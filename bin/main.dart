@@ -1,11 +1,31 @@
 // Challenge 1
 // Write a function that returns the longest sequence of consecutive zeroes in a binary string.
 // Examples:
-// longestZero("01100001011000") ➞ "0000"
+
 //
 // longestZero("100100100") ➞ "00"
 //
 // longestZero("11111") ➞ ""
+
+import 'dart:math';
+
+String longestZero(String x) {
+  int count = 0;
+  int maximum = 0;
+  for (int i = 0; i < x.length; i++) {
+    if (x[i] == '0') {
+      count++;
+      maximum = max(count, maximum);
+    } else {
+      count = 0;
+    }
+  }
+  String output = "";
+  for (int i = 0; i < maximum; i++) {
+    output = output + '0';
+  }
+  return output;
+}
 
 
 // Challenge 2
@@ -21,8 +41,27 @@
 //
 // evenOddTransform([1, 2, 3], 1) ➞ [3, 0, 5]
 
-main() {
+List evenOddTransform(List list, int number){
+  List newList = [];
+  for (int i = 0; i< list.length; i++ ){
+    if(list[i] % 2 == 0){
+      newList.add(list[i] - (2 * number));
+    }
+    else if(list[i] % 2 != 0){
+      newList.add(list[i] + (2 * number));
+    }
+  }
+  return newList;
+}
 
+main() {
+  print(longestZero("01100001011000"));
+
+  print(evenOddTransform([3, 4, 9], 3));
+  print(evenOddTransform([0, 0, 0], 10));
+  print(evenOddTransform([1, 2, 3], 1));
+
+  print(longestZero("100100100"));
 }
 
 // Challenge 3
